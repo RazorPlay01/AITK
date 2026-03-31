@@ -35,6 +35,8 @@ public abstract class LivingEntityRendererMixin<T extends LivingEntity, S extend
     @Inject(method = "extractRenderState(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/client/renderer/entity/state/LivingEntityRenderState;F)V",
             at = @At("HEAD"))
     public void extractRenderState(T entity, S state, float partialTicks, CallbackInfo ci) {
+        if ((Object) this instanceof AvatarRenderer<?>) return;
+
         StuckArrowsAccess stuckArrowsAccess = (StuckArrowsAccess) state;
         stuckArrowsAccess.arrowsForAll$setEntityId(entity.getId());
         stuckArrowsAccess.arrowsForAll$setArrowCount(entity.getArrowCount());
