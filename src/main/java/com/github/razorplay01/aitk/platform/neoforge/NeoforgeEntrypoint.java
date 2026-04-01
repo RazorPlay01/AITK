@@ -1,8 +1,8 @@
-package com.example.modtemplate.platform.neoforge;
+package com.github.razorplay01.aitk.platform.neoforge;
 
 //? neoforge {
 
-/*import com.example.modtemplate.ModTemplate;
+/*import com.github.razorplay01.aitk.ModTemplate;
 import net.neoforged.fml.common.Mod;
 
 @Mod(ModTemplate.MOD_ID)

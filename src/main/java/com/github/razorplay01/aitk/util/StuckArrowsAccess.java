@@ -1,4 +1,4 @@
-package com.example.modtemplate.util;
+package com.github.razorplay01.aitk.util;
 
 public interface StuckArrowsAccess {
     int arrowsForAll$getArrowCount();

@@ -121,7 +121,7 @@ Be careful to run the correct task for the selected Stonecutter platform and Min
 The template uses a platform abstraction pattern to keep shared code loader-agnostic:
 
 * **Shared code** goes in `com.example.modtemplate` (no platform dependencies)
-* **Platform-specific code** goes in `com.example.modtemplate.platform.{fabric|neoforge}`
+* **Platform-specific code** goes in `com.github.razorplay01.aitk.platform.{fabric|neoforge}`
 * The `Platform` interface provides loader-specific functionality to shared code
 
 ### Adding Dependencies

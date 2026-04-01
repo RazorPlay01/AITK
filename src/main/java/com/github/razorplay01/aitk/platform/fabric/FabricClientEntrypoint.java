@@ -1,8 +1,8 @@
-package com.example.modtemplate.platform.fabric;
+package com.github.razorplay01.aitk.platform.fabric;
 
 //? fabric {
 
-import com.example.modtemplate.ModTemplate;
+import com.github.razorplay01.aitk.ModTemplate;
 import dev.kikugie.fletching_table.annotation.fabric.Entrypoint;
 import net.fabricmc.api.ClientModInitializer;
 

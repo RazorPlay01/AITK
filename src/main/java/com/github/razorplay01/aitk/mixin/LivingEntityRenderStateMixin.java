@@ -1,7 +1,7 @@
-package com.example.modtemplate.mixin;
+package com.github.razorplay01.aitk.mixin;
 //? if >=1.21.2 {
 
-import com.example.modtemplate.util.StuckArrowsAccess;
+/*import com.github.razorplay01.aitk.util.StuckArrowsAccess;
 import com.moulberry.mixinconstraints.annotations.IfMinecraftVersion;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import org.spongepowered.asm.mixin.Mixin;
@@ -37,4 +37,4 @@ public class LivingEntityRenderStateMixin implements StuckArrowsAccess {
 		this.arrowsForAll$entityId = id;
 	}
 }
-//? }
+*///? }

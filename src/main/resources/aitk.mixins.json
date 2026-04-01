@@ -1,5 +1,5 @@
 {
-  "package": "com.example.modtemplate.mixin",
+  "package": "com.github.razorplay01.aitk.mixin",
   "required": true,
   "minVersion": "0.8",
   "compatibilityLevel": "${java}",

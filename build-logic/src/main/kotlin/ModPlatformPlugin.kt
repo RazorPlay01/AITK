@@ -293,11 +293,11 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 		extensions.configure<ModPublishExtension>("publishMods") {
 			val mrStaging = envTrue("TEST_PUBLISHING_WITH_MR_STAGING")
 
-			val modrinthAccessToken = env("MODRINTH_API_TOKEN")
-			val curseforgeAccessToken = env("CURSEFORGE_API_TOKEN")
-			if (!envTrue("ENABLE_PUBLISHING")) {
+			val modrinthAccessToken = env("MODRINTH_TOKEN")
+			val curseforgeAccessToken = env("CURSEFORGE_TOKEN")
+			/*if (!envTrue("ENABLE_PUBLISHING")) {
 				dryRun = true
-			}
+			}*/
 
 			val isForge = loader == "forge"
 			val targetName = if(isForge) {
