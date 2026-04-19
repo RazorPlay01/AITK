@@ -3,6 +3,9 @@
 **"I used to be an adventurer like you, then I took an arrow in the knee..."**  
 **Now every mob in Minecraft can share that experience!**
 
+[![I See My Armored Hand](https://modfolio.creeperkatze.de/modrinth/project/aitk)](https://modrinth.com/mod/aitk)
+[![I See My Armored Hand](https://modfolio.creeperkatze.de/curseforge/project/1499353)](https://www.curseforge.com/minecraft/mc-mods/arrow-in-the-knee)
+
 ---
 
 ## 📖 Description
