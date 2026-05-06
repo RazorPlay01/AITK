@@ -1,6 +1,3 @@
 accessWidener v2 named
 
-accessible method net/minecraft/client/renderer/entity/LivingEntityRenderer addLayer (Lnet/minecraft/client/renderer/entity/layers/RenderLayer;)Z
-accessible method net/minecraft/client/model/AgeableListModel headParts ()Ljava/lang/Iterable;
-accessible method net/minecraft/client/model/AgeableListModel bodyParts ()Ljava/lang/Iterable;
-accessible field net/minecraft/client/model/geom/ModelPart cubes Ljava/util/List;
+# sample_content
