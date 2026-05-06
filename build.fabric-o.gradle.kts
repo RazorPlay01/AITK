@@ -33,6 +33,18 @@ platform {
 	}
 }
 
+mixins {
+	common {
+		always(
+			"LivingEntityRendererMixin",
+			"ModelPartAccessor",
+			"LivingEntityRendererAccessor"
+		)
+		minVersion("1.21.2","LivingEntityRenderStateMixin")
+		maxVersion("1.21.1","AgeableListModelAccessor")
+	}
+}
+
 loom {
 	accessWidenerPath = rootProject.file("src/main/resources/aw/${sc.current.version}.accesswidener")
 	runs.named("client") {

@@ -17,9 +17,9 @@ import com.github.razorplay01.aitk.platform.fabric.FabricPlatform;
 @SuppressWarnings("LoggingSimilarMessage")
 public class ModTemplate {
 
-	public static final String MOD_ID = /*$ mod_id*/ "modtemplate";
-	public static final String MOD_VERSION = /*$ mod_version*/ "0.1.0";
-	public static final String MOD_FRIENDLY_NAME = /*$ mod_name*/ "Mod Template";
+	public static final String MOD_ID = /*$ mod_id*/ "aitk";
+	public static final String MOD_VERSION = /*$ mod_version*/ "1.1.0";
+	public static final String MOD_FRIENDLY_NAME = /*$ mod_name*/ "Arrow In The Knee";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 	private static final Platform PLATFORM = createPlatformInstance();
@@ -46,21 +46,5 @@ public class ModTemplate {
 		 *///?} forge {
 		/*return new ForgePlatform();
 		 *///?}
-	}
-
-	private static ResourceLocation id(String path) {
-		//? > 1.19.2 {
-		return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
-		 //?} <= 1.19.2 {
-		/*return new ResourceLocation(MOD_ID, path);
-		*///?}
-	}
-
-	private static ResourceLocation id(String namespace, String path) {
-		//? > 1.19.2 {
-		return ResourceLocation.fromNamespaceAndPath(namespace, path);
-		 //?} <= 1.19.2 {
-		/*return new ResourceLocation(namespace, path);
-		*///?}
 	}
 }
