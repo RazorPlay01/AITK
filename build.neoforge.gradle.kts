@@ -29,7 +29,9 @@ mixins {
 	common {
 		always(
 			"LivingEntityRendererMixin",
+			"AbstractArrowMixin",
 			"ModelPartAccessor",
+			"AbstractArrowAccessor",
 			"LivingEntityRendererAccessor"
 		)
 		minVersion("1.21.2","LivingEntityRenderStateMixin")

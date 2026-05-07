@@ -111,11 +111,11 @@ public abstract class GenericStuckInBodyLayer<T extends LivingEntity, M extends 
 
 	private final net.minecraft.client.model.Model<R> model;
 	private final R modelState;
-	private final net.minecraft.resources.Identifier texture;
+	private final net.minecraft.resources.ResourceLocation texture;
 
 	protected GenericStuckInBodyLayer(
 			LivingEntityRenderer<?, S, M> renderer,
-			net.minecraft.client.model.Model<R> model, R modelState, net.minecraft.resources.Identifier texture) {
+			net.minecraft.client.model.Model<R> model, R modelState, net.minecraft.resources.ResourceLocation texture) {
 		super(renderer);
 		this.model = model;
 		this.modelState = modelState;
