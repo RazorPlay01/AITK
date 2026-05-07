@@ -1,7 +1,7 @@
 mod.id = "aitk"
 mod.name = "Arrow In The Knee"
 mod.group = "com.github.razorplay01"
-mod.version = "1.1.0"
+mod.version = "1.1.1"
 mod.channel_tag = ""
 mod.description = "Mod that allows arrows to be rendered on all types of entities, not just players"
 mod.authors = ["RazorPlay01"]
