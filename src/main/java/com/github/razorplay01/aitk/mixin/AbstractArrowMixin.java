@@ -6,10 +6,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 //? >= 1.21.11 {
-/*import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
-*///?} else {
-import net.minecraft.world.entity.projectile.AbstractArrow;
-//?}
+import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
+//?} else {
+/*import net.minecraft.world.entity.projectile.AbstractArrow;
+*///?}
 
 @Mixin(AbstractArrow.class)
 public abstract class AbstractArrowMixin {

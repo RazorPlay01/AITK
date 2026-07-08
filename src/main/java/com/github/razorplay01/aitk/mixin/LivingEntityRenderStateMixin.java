@@ -1,7 +1,7 @@
 package com.github.razorplay01.aitk.mixin;
 //? if >=1.21.2 {
 
-/*import com.github.razorplay01.aitk.util.StuckArrowsAccess;
+import com.github.razorplay01.aitk.util.StuckArrowsAccess;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -35,4 +35,4 @@ public class LivingEntityRenderStateMixin implements StuckArrowsAccess {
 		this.aitk$entityId = id;
 	}
 }
-*///? }
+//? }

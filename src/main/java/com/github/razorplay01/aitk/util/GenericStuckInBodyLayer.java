@@ -4,7 +4,6 @@ import com.github.razorplay01.aitk.mixin.ModelPartAccessor;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.util.Mth;
@@ -17,15 +16,15 @@ import java.util.Collection;
 import java.util.List;
 
 //? if >=1.21.2 {
-/*import com.mojang.math.Axis;
+import com.mojang.math.Axis;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Util;
 import org.jspecify.annotations.NonNull;
-*///? }
+//? }
 
 //? if >=1.19.2 && <=1.21.1 {
-public abstract class GenericStuckInBodyLayer<T extends LivingEntity, M extends EntityModel<T>>
+/*public abstract class GenericStuckInBodyLayer<T extends LivingEntity, M extends EntityModel<T>>
 		extends RenderLayer<T, M> {
 
 	protected GenericStuckInBodyLayer(LivingEntityRenderer<T, M> renderer) {
@@ -34,15 +33,15 @@ public abstract class GenericStuckInBodyLayer<T extends LivingEntity, M extends 
 
 	protected abstract int numStuck(T entity);
 
-	/**
+	/^*
 	 * Renderiza un solo ítem clavado (la flecha).
 	 * Aquí puedes sobrescribir si quieres flechas de diferentes tipos/texturas.
-	 */
-	protected abstract void renderStuckItem(PoseStack poseStack, MultiBufferSource buffer,
+	 ^/
+	protected abstract void renderStuckItem(PoseStack poseStack, net.minecraft.client.renderer.MultiBufferSource buffer,
 	                                        int packedLight, Entity entity, float x, float y, float z, float partialTick);
 
 	@Override
-	public void render(PoseStack poseStack, MultiBufferSource buffer, int packedLight, T livingEntity,
+	public void render(PoseStack poseStack, net.minecraft.client.renderer.MultiBufferSource buffer, int packedLight, T livingEntity,
 	                   float limbSwing, float limbSwingAmount, float partialTick,
 	                   float ageInTicks, float netHeadYaw, float headPitch) {
 
@@ -101,21 +100,21 @@ public abstract class GenericStuckInBodyLayer<T extends LivingEntity, M extends 
 		return list;
 	}
 }
-//? }
+*///? }
 
 
 //? if >=1.21.2 {
 
-/*public abstract class GenericStuckInBodyLayer<S extends LivingEntityRenderState, M extends EntityModel<S>, R>
+public abstract class GenericStuckInBodyLayer<S extends LivingEntityRenderState, M extends EntityModel<S>, R>
 		extends RenderLayer<S, M> {
 
 	private final net.minecraft.client.model.Model<R> model;
 	private final R modelState;
-	private final net.minecraft.resources.ResourceLocation texture;
+	private final net.minecraft.resources.Identifier texture;
 
 	protected GenericStuckInBodyLayer(
 			LivingEntityRenderer<?, S, M> renderer,
-			net.minecraft.client.model.Model<R> model, R modelState, net.minecraft.resources.ResourceLocation texture) {
+			net.minecraft.client.model.Model<R> model, R modelState, net.minecraft.resources.Identifier texture) {
 		super(renderer);
 		this.model = model;
 		this.modelState = modelState;
@@ -183,4 +182,4 @@ public abstract class GenericStuckInBodyLayer<T extends LivingEntity, M extends 
 	}
 }
 
-*///? }
+//? }

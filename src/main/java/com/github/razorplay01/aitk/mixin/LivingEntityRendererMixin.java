@@ -13,16 +13,16 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 //? if <=1.21.8 {
-import net.minecraft.client.renderer.entity.player.PlayerRenderer;
-//?}
+/*import net.minecraft.client.renderer.entity.player.PlayerRenderer;
+*///?}
 //? if >=1.21.2 {
-/*import com.github.razorplay01.aitk.util.StuckArrowsAccess;
+import com.github.razorplay01.aitk.util.StuckArrowsAccess;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.client.renderer.entity.player.AvatarRenderer;
-*///? }
+//? }
 
 //? if >=1.19.2 && <=1.21.1 {
-@Mixin(LivingEntityRenderer.class)
+/*@Mixin(LivingEntityRenderer.class)
 public abstract class LivingEntityRendererMixin<T extends LivingEntity, M extends EntityModel<T>> extends EntityRenderer<T> implements RenderLayerParent<T, M> {
 
 	protected LivingEntityRendererMixin(EntityRendererProvider.Context context) {
@@ -39,11 +39,11 @@ public abstract class LivingEntityRendererMixin<T extends LivingEntity, M extend
 		LivingEntityRenderer<?, ?> self = (LivingEntityRenderer<?, ?>) (Object) this;
 		((LivingEntityRendererAccessor) self).aitk$addLayer(new GenericArrowLayer(context, self));
 	}
-//? }
+*///? }
 
 
 //? if >=1.21.2 {
-/*@Mixin(LivingEntityRenderer.class)
+@Mixin(LivingEntityRenderer.class)
 public abstract class LivingEntityRendererMixin<T extends LivingEntity, S extends LivingEntityRenderState, M extends EntityModel<? super S>> extends EntityRenderer<T, S> implements RenderLayerParent<S, M> {
     protected LivingEntityRendererMixin(EntityRendererProvider.Context context) {
         super(context);
@@ -67,5 +67,5 @@ public abstract class LivingEntityRendererMixin<T extends LivingEntity, S extend
         stuckArrowsAccess.aitk$setEntityId(entity.getId());
         stuckArrowsAccess.aitk$setArrowCount(entity.getArrowCount());
     }
-*///? }
+//? }
 }

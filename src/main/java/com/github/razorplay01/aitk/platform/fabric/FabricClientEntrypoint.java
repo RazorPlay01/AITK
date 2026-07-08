@@ -2,7 +2,7 @@ package com.github.razorplay01.aitk.platform.fabric;
 
 //? fabric {
 
-import com.github.razorplay01.aitk.ModTemplate;
+/*import com.github.razorplay01.aitk.ModTemplate;
 import dev.kikugie.fletching_table.annotation.fabric.Entrypoint;
 import net.fabricmc.api.ClientModInitializer;
 
@@ -15,4 +15,4 @@ public class FabricClientEntrypoint implements ClientModInitializer {
 	}
 
 }
-//?}
+*///?}

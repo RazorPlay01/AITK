@@ -2,7 +2,7 @@ package com.github.razorplay01.aitk.platform.fabric;
 
 //? fabric {
 
-import com.github.razorplay01.aitk.platform.Platform;
+/*import com.github.razorplay01.aitk.platform.Platform;
 import net.fabricmc.loader.api.FabricLoader;
 
 public class FabricPlatform implements Platform {
@@ -27,4 +27,4 @@ public class FabricPlatform implements Platform {
 		return FabricLoader.getInstance().isDevelopmentEnvironment();
 	}
 }
-//?}
+*///?}
