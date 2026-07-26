@@ -3,6 +3,7 @@
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import me.modmuss50.mpp.ModPublishExtension
 import me.modmuss50.mpp.ReleaseType
+import me.modmuss50.mpp.platforms.modrinth.ModrinthEnvironment
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
 import org.gradle.jvm.tasks.Jar
