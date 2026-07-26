@@ -18,7 +18,7 @@ import com.github.razorplay01.aitk.platform.neoforge.NeoforgePlatform;
 public class ModTemplate {
 
 	public static final String MOD_ID = /*$ mod_id*/ "aitk";
-	public static final String MOD_VERSION = /*$ mod_version*/ "1.1.2";
+	public static final String MOD_VERSION = /*$ mod_version*/ "1.2.0";
 	public static final String MOD_FRIENDLY_NAME = /*$ mod_name*/ "Arrow In The Knee";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 

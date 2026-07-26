@@ -22,6 +22,7 @@ import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Util;
 import org.jspecify.annotations.NonNull;
 //? }
+import static com.github.razorplay01.aitk.util.Util.bestFromListMutable;
 
 //? if >=1.19.2 && <=1.21.1 {
 /*public abstract class GenericStuckInBodyLayer<T extends LivingEntity, M extends EntityModel<T>>
@@ -33,10 +34,6 @@ import org.jspecify.annotations.NonNull;
 
 	protected abstract int numStuck(T entity);
 
-	/^*
-	 * Renderiza un solo ítem clavado (la flecha).
-	 * Aquí puedes sobrescribir si quieres flechas de diferentes tipos/texturas.
-	 ^/
 	protected abstract void renderStuckItem(PoseStack poseStack, net.minecraft.client.renderer.MultiBufferSource buffer,
 	                                        int packedLight, Entity entity, float x, float y, float z, float partialTick);
 
@@ -48,28 +45,45 @@ import org.jspecify.annotations.NonNull;
 		int count = numStuck(livingEntity);
 		if (count <= 0) return;
 
-		// Usamos getRandomModelPart como hace vanilla, pero con filtro extra por seguridad
-		RandomSource random = RandomSource.create(livingEntity.getId());
-
-		List<ModelPart> parts = new ArrayList<>();
 		if (!(this.getParentModel() instanceof net.minecraft.client.model.AgeableListModel)) return;
-		com.github.razorplay01.aitk.mixin.AgeableListModelAccessor ageableListModelAccessor = (com.github.razorplay01.aitk.mixin.AgeableListModelAccessor) this.getParentModel();
-		parts.addAll(makeCollection(ageableListModelAccessor.aitk$headParts()));
-		parts.addAll(makeCollection(ageableListModelAccessor.aitk$bodyParts()));
 
-		List<ModelPart> partsWithCubes = parts.stream()
-				.filter(part -> !((ModelPartAccessor) (Object) part).aitk$getCubes().isEmpty())
-				.toList();
+		com.github.razorplay01.aitk.mixin.AgeableListModelAccessor ageableListModelAccessor =
+				(com.github.razorplay01.aitk.mixin.AgeableListModelAccessor) this.getParentModel();
 
-		if (partsWithCubes.isEmpty()) return;
+		// Tops de la jerarquía (equivalente a partir del root en 1.21.2+)
+		List<ModelPart> topParts = new ArrayList<>();
+		topParts.addAll(makeCollection(ageableListModelAccessor.aitk$headParts()));
+		topParts.addAll(makeCollection(ageableListModelAccessor.aitk$bodyParts()));
+
+		if (topParts.isEmpty()) return;
+
+		RandomSource random = RandomSource.create(livingEntity.getId());
 
 		for (int i = 0; i < count; i++) {
 			poseStack.pushPose();
 
-			ModelPart modelPart = net.minecraft.Util.getRandom(partsWithCubes, random);
-			ModelPart.Cube cube = modelPart.getRandomCube(random);
+			java.util.Random partRand = new java.util.Random(i);
+			com.mojang.datafixers.util.Pair<ModelPart, Runnable> pair = Util.bestFromListMutable(
+					new ArrayList<>(topParts),
+					partRand,
+					poseStack,
+					true
+			);
 
-			modelPart.translateAndRotate(poseStack);
+			if (pair == null) {
+				poseStack.popPose();
+				continue;
+			}
+
+			ModelPart modelPart = pair.getFirst();
+			pair.getSecond().run(); // cadena completa padres → hijo
+
+			if (((ModelPartAccessor) (Object) modelPart).aitk$getCubes().isEmpty()) {
+				poseStack.popPose();
+				continue;
+			}
+
+			ModelPart.Cube cube = modelPart.getRandomCube(random);
 
 			float f = random.nextFloat();
 			float f1 = random.nextFloat();
@@ -81,7 +95,6 @@ import org.jspecify.annotations.NonNull;
 
 			poseStack.translate(x, y, z);
 
-			// Dirección para la rotación (tu estilo moderno)
 			float dirX = -1.0F * (f * 2.0F - 1.0F);
 			float dirY = -1.0F * (f1 * 2.0F - 1.0F);
 			float dirZ = -1.0F * (f2 * 2.0F - 1.0F);
@@ -132,25 +145,33 @@ public abstract class GenericStuckInBodyLayer<S extends LivingEntityRenderState,
 		int count = this.numStuck(state);
 		if (count <= 0) return;
 
-		// FILTRAR: solo partes que realmente tienen cubos
-		List<ModelPart> partsWithCubes = this.getParentModel().allParts().stream()
-				.filter(part -> !((ModelPartAccessor) (Object) part).aitk$getCubes().isEmpty())
-				.toList();
-
-		// Si el modelo no tiene partes con cubos, no hacer nada
-		if (partsWithCubes.isEmpty()) return;
-
 		RandomSource random = RandomSource.create(
 				((StuckArrowsAccess) state).aitk$getEntityId()
 		);
 
+		ModelPart root = this.getParentModel().root();
+
 		for (int i = 0; i < count; i++) {
 			poseStack.pushPose();
 
-			// Usar la lista filtrada en vez de model.allParts()
-			ModelPart modelPart = Util.getRandom(partsWithCubes, random);
+			// Semilla por flecha para repartir partes de forma estable
+			java.util.Random partRand = new java.util.Random(i);
+			com.mojang.datafixers.util.Pair<ModelPart, Runnable> pair = bestFromListMutable(
+					new ArrayList<>(List.of(root)),
+					partRand,
+					poseStack,
+					true
+			);
+
+			if (pair == null) {
+				poseStack.popPose();
+				continue;
+			}
+
+			ModelPart modelPart = pair.getFirst();
+			pair.getSecond().run();
+
 			ModelPart.Cube cube = modelPart.getRandomCube(random);
-			modelPart.translateAndRotate(poseStack);
 
 			float midX = random.nextFloat();
 			float midY = random.nextFloat();
@@ -172,9 +193,14 @@ public abstract class GenericStuckInBodyLayer<S extends LivingEntityRenderState,
 			poseStack.mulPose(Axis.ZP.rotationDegrees(rotX));
 
 			submitNodeCollector.submitModel(
-					this.model, this.modelState, poseStack, this.model.renderType(this.texture),
-					lightCoords, net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY,
-					state.outlineColor, null
+					this.model,
+					this.modelState,
+					poseStack,
+					this.model.renderType(this.texture),
+					lightCoords,
+					net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY,
+					state.outlineColor,
+					null
 			);
 
 			poseStack.popPose();
