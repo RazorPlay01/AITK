@@ -171,6 +171,11 @@ public abstract class GenericStuckInBodyLayer<S extends LivingEntityRenderState,
 			ModelPart modelPart = pair.getFirst();
 			pair.getSecond().run();
 
+			if (modelPart.isEmpty()) {
+				poseStack.popPose();
+				continue;
+			}
+
 			ModelPart.Cube cube = modelPart.getRandomCube(random);
 
 			float midX = random.nextFloat();
